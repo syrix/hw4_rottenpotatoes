@@ -9,5 +9,5 @@ Given /the following movies exist/ do |movies_table|
 end
 
 Then /^the director of "([^"]*)" should be "([^"]*)"$/ do |movie, director|
-  pending # express the regexp above with the code you wish you had
+  Movie.find_by_title(movie).director.should == director
 end
