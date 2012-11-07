@@ -28,7 +28,7 @@ module NavigationHelpers
       edit_movie_path(Movie.find_by_title($1))
 
     when /^the Similar Movies\s?page for "(.*)"$/
-      edit_movie_path(Movie.find_by_title($1))
+      similar_path(Movie.find_by_title($1))
 
     else
       begin

@@ -6,6 +6,10 @@ class MoviesController < ApplicationController
     # will render app/views/movies/show.<extension> by default
   end
 
+  def directors
+    render 'similar'
+  end
+
   def index
     sort = params[:sort] || session[:sort]
     case sort

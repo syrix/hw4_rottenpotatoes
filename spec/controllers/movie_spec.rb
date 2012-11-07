@@ -1,8 +1,13 @@
 require 'spec_helper'
 
-
 describe MoviesController do
-  it "routes '/director/George Lucas' to MoviesController.director('George Lucas')" do
-    get("/director/George Lucas").should route_to("movies#director", director: "George Lucas")
+  fixtures :movies
+  it "routes '/similar/1' to MoviesController.similar(1)" do
+    similar_path(1).should == '/similar/1'
+  end
+
+  it "handles calls to similar(movie_id) and render the index template" do
+    get(:similar, {'id' => "1"})
+    response.should render_template('similar')
   end
 end
