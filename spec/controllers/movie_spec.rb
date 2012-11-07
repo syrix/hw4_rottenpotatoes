@@ -7,7 +7,19 @@ describe MoviesController do
   end
 
   it "handles calls to similar(movie_id) and render the index template" do
-    get(:similar, {'id' => "1"})
+    get(:similar, {'id' => "Alien"})
     response.should render_template('similar')
+  end
+
+  it "sets the correct list of movies" do
+    get(:similar, {'id' => "Star Wars"})
+    assigns(:title).should == "Star Wars"
+    counter = 0
+
+    assigns(:movies).each do |movie|
+      movie.director.should == "George Lucas"
+      counter= counter+1
+    end
+    counter.should == 2
   end
 end

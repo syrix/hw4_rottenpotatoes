@@ -6,7 +6,10 @@ class MoviesController < ApplicationController
     # will render app/views/movies/show.<extension> by default
   end
 
-  def directors
+  def similar
+    @title = params[:id]
+    director = Movie.find_by_title(@title).director
+    @movies = Movie.find_all_by_director(director)
     render 'similar'
   end
 
