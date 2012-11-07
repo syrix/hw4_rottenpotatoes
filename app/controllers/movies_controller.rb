@@ -7,10 +7,15 @@ class MoviesController < ApplicationController
   end
 
   def similar
-    @title = params[:id]
-    director = Movie.find_by_title(@title).director
+    director = Movie.find_by_id(params[:id]).director
+    title = Movie.find_by_id(params[:id]).title
     @movies = Movie.find_all_by_director(director)
-    render 'similar'
+    if(director=="")
+      flash[:notice] = "'#{title}' has no director info."
+      redirect_to movies_path
+    else
+      render 'similar'
+    end
   end
 
   def index
